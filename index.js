@@ -12,15 +12,16 @@ const download = function(uri, filename, callback){
     request(uri).pipe(fs.createWriteStream(filename)).on('close', callback)
   })
 }
-
-download(turrialba, 'images/turrialba.png', () =>{
+const when = new Date();
+const format = `${when.getFullYear()}${when.getMonth()}${when.getDate()}${when.getHours()}`
+download(turrialba, `images/turrialba-${format}.png`, () =>{
   console.log('done')
 })
 
-download(poas, 'images/poas.png', () =>{
+download(poas, `images/poas-${format}.png`, () =>{
   console.log('done')
 })
 
-download(rincon, 'images/rincon.png', () =>{
+download(rincon, `images/rincon-${format}.png`, () =>{
   console.log('done')
 })
