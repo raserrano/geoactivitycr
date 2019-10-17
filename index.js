@@ -16,17 +16,17 @@ const download = function (uri, filename, callback) {
 
 function grabImages () {
   const when = new Date()
-  const format = `${when.getFullYear()}${when.getMonth()}${when.getDate()}${when.getHours()}${when.getMinutes()}`
+  const format = `${when.getFullYear()}${when.getMonth() + 1}${when.getDate()}${when.getHours()}${when.getMinutes()}`
   console.log(`Grabbing images at ${when}`)
-  download(turrialba, `images/turrialba-${format}.png`, () => {
+  download(turrialba, `images/turrialba-${format}.jpg`, () => {
     console.log('done')
   })
 
-  download(poas, `images/poas-${format}.png`, () => {
+  download(poas, `images/poas-${format}.jpg`, () => {
     console.log('done')
   })
 
-  download(rincon, `images/rincon-${format}.png`, () => {
+  download(rincon, `images/rincon-${format}.jpg`, () => {
     console.log('done')
   })
 }
