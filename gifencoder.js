@@ -13,7 +13,8 @@ const format = `${when.getFullYear()}${when.getMonth() + 1}${when.getDate()}${wh
 console.log(`W: ${width} H: ${height} M:${match}`)
 
 const encoder = new GIFEncoder(width, height)
-const pics = glob.sync(`images/${match}*.jpg`)
+let pics = glob.sync(`images/${match}*.jpg`)
+pics = pics.sort()
 const canvas = createCanvas(width, height)
 const ctx = canvas.getContext('2d')
 
