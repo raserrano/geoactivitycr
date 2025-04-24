@@ -2,6 +2,7 @@ const GIFEncoder = require('gifencoder')
 const { createCanvas, Image } = require('canvas')
 const fs = require('fs')
 const glob = require('glob')
+const path = require('path')
 
 const width = parseInt(process.env.WIDTH) || 854
 const height = parseInt(process.env.HEIGHT) || 480
@@ -12,7 +13,8 @@ const format = `${when.getFullYear()}${when.getMonth() + 1}${when.getDate()}${wh
 console.log(`W: ${width} H: ${height} M:${match}`)
 
 const encoder = new GIFEncoder(width, height)
-const pics = glob.sync(`images/${match}*.jpg`)
+let pics = glob.sync(`images/${match}*.jpg`)
+pics = pics.sort()
 const canvas = createCanvas(width, height)
 const ctx = canvas.getContext('2d')
 
@@ -25,7 +27,7 @@ encoder.setQuality(10)
 
 for (let i = 0; i < pics.length; i++) {
   console.log(`Image: ${pics[i]}`)
-  const data = fs.readFileSync(__dirname + `/${pics[i]}`)
+  const data = fs.readFileSync(path.join(__dirname, pics[i]))
   const img = new Image()
   img.src = data
   ctx.drawImage(img, 0, 0, width, height)
