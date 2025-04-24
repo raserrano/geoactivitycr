@@ -1,16 +1,18 @@
 const cron = require('node-cron')
 const fs = require('fs')
-const request = require('request')
+const axios = require('axios')
 
 const turrialba = 'http://www.ovsicori.una.ac.cr/images/stories/camaras/liveturrialba/camara.jpg'
 const poas = 'http://www.ovsicori.una.ac.cr/images/stories/camaras/livecraterpoas/camara.jpg'
 const rincon = 'http://www.ovsicori.una.ac.cr/images/stories/camaras/liverincon/camara.jpg'
 
 const download = function (uri, filename, callback) {
-  request.head(uri, (err, res) => {
-    // console.log('content-type:', res.headers['content-type'])
-    // console.log('content-length:', res.headers['content-length'])
-    request(uri).pipe(fs.createWriteStream(filename)).on('close', callback)
+  axios({
+    method: 'get',
+    url: uri,
+    responseType: 'stream'
+  }).then(function (response) {
+    response.data.pipe(fs.createWriteStream(filename).on('close', callback))
   })
 }
 
