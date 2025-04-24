@@ -1,4 +1,4 @@
 /node_modules/
-/images/
-/gifs/
+gifs
+images
 package-lock.json
