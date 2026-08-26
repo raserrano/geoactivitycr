@@ -1,5 +1,6 @@
 const cron = require('node-cron')
 const fs = require('fs')
+const path = require('path')
 const axios = require('axios')
 
 const poasCha = {
@@ -43,8 +44,9 @@ function grabImages () {
   const when = new Date()
   const format = `${when.getFullYear()}${when.getMonth() + 1}${when.getDate()}${when.getHours()}${when.getMinutes()}`
   console.log(`Grabbing images at ${when}`)
+  const imagesPath = path.join(__dirname, './images/');
   volcanos.forEach(v => {
-    download(v.url, `images/${v.name}-${format}.jpg`, () => {
+    download(v.url, `${imagesPath}${v.name}-${format}.jpg`, () => {
       console.log('done')
     })
   })
