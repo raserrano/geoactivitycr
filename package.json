@@ -26,14 +26,17 @@
   },
   "homepage": "https://github.com/raserrano/geoactivitycr#readme",
   "dependencies": {
-    "axios": "^1.19.0",
+    "axios": "^1.20.0",
     "fs": "0.0.1-security",
     "gifencoder": "^2.0.1",
     "glob": "^13.0.6",
     "node-cron": "^4.6.0"
   },
   "devDependencies": {
-    "npm-check-updates": "^23.0.2",
+    "npm-check-updates": "^23.1.0",
     "standard": "^17.1.2"
+  },
+  "allowScripts": {
+    "canvas@2.11.2": true
   }
 }
